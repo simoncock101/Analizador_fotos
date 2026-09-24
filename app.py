@@ -15,7 +15,7 @@ def encode_image(image_file):
 
 
 # =========================================================
-# CONFIGURACIÓN DE LA PÁGINA
+# CONFIGURACIÓN
 # =========================================================
 
 st.set_page_config(
@@ -27,143 +27,78 @@ st.set_page_config(
 
 
 # =========================================================
-# ESTILOS
+# DISEÑO
 # =========================================================
 
 st.markdown("""
 <style>
 
-/* FONDO GENERAL */
+/* Fondo general */
 
 .stApp {
     background-color: #101214;
-    color: white;
 }
 
 
-/* CONTENEDOR PRINCIPAL */
+/* Contenedor principal */
 
-.main {
-    padding-top: 20px;
+.block-container {
+    max-width: 900px;
+    padding-top: 35px;
+    padding-bottom: 50px;
 }
 
 
-/* ENCABEZADO */
+/* Título principal */
 
-.header {
-    background: linear-gradient(
-        135deg,
-        #182848,
-        #4b6cb7
-    );
-
-    padding: 35px 25px;
-    border-radius: 20px;
-
-    text-align: center;
-
-    margin-bottom: 25px;
-
-    box-shadow:
-        0px 8px 25px rgba(0,0,0,0.35);
-}
-
-.header h1 {
+h1 {
     color: white !important;
-    font-size: 38px;
-    margin-bottom: 8px;
+    font-size: 38px !important;
+    font-weight: 700 !important;
 }
 
-.header p {
-    color: #e5e7eb !important;
-    font-size: 17px;
-    margin: 0;
+h2 {
+    color: white !important;
+}
+
+h3 {
+    color: white !important;
 }
 
 
-/* TARJETAS */
+/* Texto general */
 
-.card {
+p {
+    color: #d1d5db;
+}
+
+
+/* Tarjetas */
+
+[data-testid="stVerticalBlockBorderWrapper"] {
     background-color: #1b1f24;
-
-    padding: 24px;
-
+    border: 1px solid #30363d;
     border-radius: 16px;
-
-    margin-top: 20px;
-    margin-bottom: 20px;
-
-    border: 1px solid #30363d;
-
-    box-shadow:
-        0px 5px 18px rgba(0,0,0,0.25);
-}
-
-.card-title {
-    color: #8ab4ff !important;
-
-    font-size: 21px;
-
-    font-weight: bold;
-
-    margin-bottom: 10px;
-}
-
-.card-text {
-    color: #d1d5db !important;
-
-    font-size: 15px;
-
-    line-height: 1.6;
 }
 
 
-/* CARGADOR DE IMAGEN */
+/* Input de API */
 
-[data-testid="stFileUploader"] {
-    background-color: #1b1f24;
-
-    border: 2px dashed #4b6cb7;
-
-    border-radius: 15px;
-
-    padding: 15px;
-
-    margin-top: 10px;
-}
-
-[data-testid="stFileUploader"] * {
-    color: #e5e7eb !important;
+.stTextInput input {
+    background-color: #1b1f24 !important;
+    color: white !important;
+    border: 1px solid #4b6cb7 !important;
+    border-radius: 10px !important;
 }
 
 
-/* IMAGEN */
-
-.image-container {
-    background-color: #181b20;
-
-    border-radius: 15px;
-
-    padding: 15px;
-
-    border: 1px solid #30363d;
-
-    margin-top: 20px;
-}
-
-
-/* TEXT AREA */
+/* Área de texto */
 
 .stTextArea textarea {
     background-color: #1b1f24 !important;
-
     color: white !important;
-
     border: 1px solid #4b6cb7 !important;
-
-    border-radius: 10px;
-
-    font-size: 15px;
+    border-radius: 10px !important;
 }
 
 .stTextArea textarea::placeholder {
@@ -171,150 +106,61 @@ st.markdown("""
 }
 
 
-/* API KEY */
+/* Cargador */
 
-.stTextInput input {
-    background-color: #1b1f24 !important;
-
-    color: white !important;
-
-    border: 1px solid #4b6cb7 !important;
-
-    border-radius: 10px;
-}
-
-.stTextInput input::placeholder {
-    color: #9ca3af !important;
-}
-
-
-/* BOTÓN */
-
-.stButton > button {
-    width: 100%;
-
-    background: linear-gradient(
-        135deg,
-        #4b6cb7,
-        #6a8dd8
-    );
-
-    color: white !important;
-
-    border: none;
-
-    border-radius: 12px;
-
-    padding: 13px;
-
-    font-size: 17px;
-
-    font-weight: bold;
-
-    box-shadow:
-        0px 4px 12px rgba(75,108,183,0.35);
-
-    transition: 0.2s;
-}
-
-.stButton > button:hover {
-    background: linear-gradient(
-        135deg,
-        #5b7bc5,
-        #7898df
-    );
-
-    transform: translateY(-1px);
-}
-
-
-/* RESULTADO */
-
-.result-header {
-    background: linear-gradient(
-        135deg,
-        #182848,
-        #263b69
-    );
-
-    padding: 18px 22px;
-
-    border-radius: 15px 15px 0px 0px;
-
-    border-top: 4px solid #6a8dd8;
-}
-
-.result-header h3 {
-    color: #ffffff !important;
-
-    margin: 0;
-
-    font-size: 21px;
-}
-
-.result-body {
+[data-testid="stFileUploader"] {
     background-color: #1b1f24;
-
-    padding: 25px;
-
-    border-radius: 0px 0px 15px 15px;
-
-    border: 1px solid #30363d;
-
-    border-top: none;
-
-    color: #f3f4f6 !important;
-
-    font-size: 17px;
-
-    line-height: 1.7;
-
-    box-shadow:
-        0px 5px 18px rgba(0,0,0,0.3);
+    border: 2px dashed #4b6cb7;
+    border-radius: 15px;
+    padding: 15px;
 }
 
-.result-body p {
-    color: #f3f4f6 !important;
-}
-
-.result-body strong {
-    color: #8ab4ff !important;
-}
-
-
-/* TEXTO GENERAL */
-
-.stApp p {
-    color: #d1d5db;
-}
-
-.stApp label {
+[data-testid="stFileUploader"] * {
     color: #e5e7eb !important;
 }
 
 
-/* EXPANDER */
+/* Botón */
 
-.streamlit-expanderHeader {
-    background-color: #1b1f24 !important;
-
+.stButton > button {
+    width: 100%;
+    background: linear-gradient(135deg, #4b6cb7, #6a8dd8);
     color: white !important;
+    border: none;
+    border-radius: 12px;
+    padding: 13px;
+    font-size: 17px;
+    font-weight: bold;
+}
 
-    border-radius: 10px;
+.stButton > button:hover {
+    background: linear-gradient(135deg, #5b7bc5, #7898df);
 }
 
 
-/* MENSAJES */
+/* Imagen */
 
-div[data-testid="stAlert"] {
-    border-radius: 10px;
+[data-testid="stImage"] {
+    border-radius: 15px;
 }
 
 
-/* SEPARADOR */
+/* Resultado */
 
-hr {
-    border-color: #30363d;
+.resultado {
+    background-color: #1b1f24;
+    border: 1px solid #30363d;
+    border-top: 4px solid #6a8dd8;
+    border-radius: 15px;
+    padding: 25px;
+    margin-top: 20px;
+}
+
+
+/* Alertas */
+
+[data-testid="stAlert"] {
+    border-radius: 10px;
 }
 
 </style>
@@ -325,46 +171,42 @@ hr {
 # ENCABEZADO
 # =========================================================
 
-st.markdown("""
-<div class="header">
+st.markdown(
+    "<h1 style='text-align:center;'>🤖 Analizador de Fotos con IA</h1>",
+    unsafe_allow_html=True
+)
 
-    <h1>🤖 Analizador de Fotos con IA</h1>
+st.markdown(
+    "<p style='text-align:center; font-size:18px;'>"
+    "Sube una imagen y deja que la inteligencia artificial "
+    "analice lo que aparece en ella."
+    "</p>",
+    unsafe_allow_html=True
+)
 
-    <p>
-        Sube una imagen y deja que la inteligencia artificial
-        analice lo que aparece en ella
-    </p>
-
-</div>
-""", unsafe_allow_html=True)
+st.markdown("---")
 
 
 # =========================================================
-# DESCRIPCIÓN
+# INFORMACIÓN
 # =========================================================
 
-st.markdown("""
-<div class="card">
+info = st.container(border=True)
 
-    <div class="card-title">
-        🔍 ¿Qué puedes analizar?
-    </div>
+info.subheader("🔍 ¿Qué puedes analizar?")
 
-    <div class="card-text">
-        Carga una fotografía y obtén una descripción detallada
-        de su contenido. También puedes agregar una pregunta
-        específica o contexto para orientar el análisis.
-    </div>
-
-</div>
-""", unsafe_allow_html=True)
+info.write(
+    "Carga una fotografía y obtén una descripción detallada "
+    "de su contenido. También puedes agregar una pregunta "
+    "específica o contexto para orientar el análisis."
+)
 
 
 # =========================================================
 # API KEY
 # =========================================================
 
-st.markdown("### 🔐 Conexión con OpenAI")
+st.subheader("🔐 Conexión con OpenAI")
 
 ke = st.text_input(
     "Ingresa tu clave de OpenAI",
@@ -380,7 +222,7 @@ if ke:
 
 
 # =========================================================
-# CLIENTE OPENAI
+# CLIENTE
 # =========================================================
 
 if ke:
@@ -396,7 +238,7 @@ if ke:
 # CARGAR IMAGEN
 # =========================================================
 
-st.markdown("### 📸 Selecciona una fotografía")
+st.subheader("📸 Selecciona una fotografía")
 
 uploaded_file = st.file_uploader(
     "Arrastra tu imagen aquí o selecciónala desde tu computador",
@@ -410,15 +252,7 @@ uploaded_file = st.file_uploader(
 
 if uploaded_file:
 
-    st.markdown("""
-    <div class="card">
-
-        <div class="card-title">
-            🖼️ Imagen seleccionada
-        </div>
-
-    </div>
-    """, unsafe_allow_html=True)
+    st.subheader("🖼️ Imagen seleccionada")
 
     st.image(
         uploaded_file,
@@ -428,10 +262,10 @@ if uploaded_file:
 
 
 # =========================================================
-# PREGUNTA ESPECÍFICA
+# PREGUNTA
 # =========================================================
 
-st.markdown("### 💬 Personaliza el análisis")
+st.subheader("💬 Personaliza el análisis")
 
 show_details = st.toggle(
     "Quiero hacer una pregunta específica sobre la imagen",
@@ -444,7 +278,10 @@ if show_details:
 
     additional_details = st.text_area(
         "¿Qué quieres saber sobre la imagen?",
-        placeholder="Ejemplo: ¿Qué objetos aparecen en la fotografía? ¿Qué tipo de lugar es?",
+        placeholder=(
+            "Ejemplo: ¿Qué objetos aparecen en la fotografía? "
+            "¿Qué tipo de lugar es?"
+        ),
         height=120
     )
 
@@ -467,7 +304,9 @@ analyze_button = st.button(
 
 if uploaded_file is not None and ke and analyze_button:
 
-    with st.spinner("🤖 La inteligencia artificial está analizando la imagen..."):
+    with st.spinner(
+        "🤖 La inteligencia artificial está analizando la imagen..."
+    ):
 
         base64_image = encode_image(
             uploaded_file
@@ -549,22 +388,16 @@ if uploaded_file is not None and ke and analyze_button:
             message_placeholder.empty()
 
 
-            # =================================================
-            # RESULTADO FINAL
-            # =================================================
+            # =============================================
+            # RESULTADO
+            # =============================================
 
-            st.markdown("""
-            <div class="result-header">
-                <h3>🤖 Análisis de la imagen</h3>
-            </div>
-            """, unsafe_allow_html=True)
+            st.subheader("🤖 Análisis de la imagen")
 
+            resultado = st.container(border=True)
 
-            st.markdown(
-                '<div class="result-body">' +
-                full_response.replace("\n", "<br>") +
-                '</div>',
-                unsafe_allow_html=True
+            resultado.write(
+                full_response
             )
 
 
@@ -577,7 +410,7 @@ if uploaded_file is not None and ke and analyze_button:
 
 
 # =========================================================
-# MENSAJES DE AYUDA
+# MENSAJES
 # =========================================================
 
 if analyze_button and not uploaded_file:
